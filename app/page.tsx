@@ -51,7 +51,7 @@ export default function Home() {
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         required
-                        className="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+                        className="w-full p-3 rounded-xl border border-red-950 focus:outline-none focus:ring-2 focus:ring-green-400"
                     />
                     <input
                         type="number"
@@ -70,7 +70,7 @@ export default function Home() {
                     </button>
                 </form>
                 {message && (
-                    <p className="mt-4 text-sm text-gray-700 bg-green-50 p-3 rounded-xl">
+                    <p className="mt-4 text-sm text-gray-950 bg-green-50 p-3 rounded-xl">
                         {message}
                     </p>
                 )}
