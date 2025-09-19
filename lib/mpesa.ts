@@ -6,7 +6,7 @@ const consumerKey = process.env.MPESA_CONSUMER_KEY!;
 const consumerSecret = process.env.MPESA_CONSUMER_SECRET!;
 const shortcode = process.env.MPESA_SHORTCODE!;
 const passkey = process.env.MPESA_PASSKEY!;
-const callbackUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/callback`;
+const defaultCallbackUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/callback`;
 
 export async function getToken(): Promise<string> {
     const auth = Buffer.from(`${consumerKey}:${consumerSecret}`).toString("base64");
@@ -40,7 +40,7 @@ export async function stkPush(request: StkPushRequest): Promise<StkPushResponse>
             PartyA: request.phoneNumber,
             PartyB: shortcode,
             PhoneNumber: request.phoneNumber,
-            CallBackURL: callbackUrl,
+            CallBackURL: request.callbackUrl || defaultCallbackUrl,
             AccountReference: request.accountReference || "TestPayment",
             TransactionDesc: request.transactionDesc || "Payment",
         };
@@ -60,5 +60,3 @@ export async function stkPush(request: StkPushRequest): Promise<StkPushResponse>
         throw err;
     }
 }
-
-

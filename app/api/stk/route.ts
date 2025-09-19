@@ -14,7 +14,12 @@ export async function POST(req: Request) {
             );
         }
 
-        const response = await stkPush(body);
+        // Inject default callback if not provided
+        const response = await stkPush({
+            ...body,
+            callbackUrl: body.callbackUrl || `${process.env.BASE_URL}/api/callback`,
+        });
+
         return NextResponse.json(response);
     } catch (error: any) {
         // Return detailed error instead of generic 500

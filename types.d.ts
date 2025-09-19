@@ -1,4 +1,5 @@
 export interface StkPushRequest {
+    callbackUrl: string;
     phoneNumber: string;
     amount: number;
     accountReference: string;
